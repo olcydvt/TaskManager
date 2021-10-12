@@ -19,6 +19,10 @@ A compiler supporting the C++17 features.
 * resume <id> - resumes execution of a halted job
 * quit – aborts all running jobs and quits the application
 
+## UML
+![Class Diagram](https://github.com/olcydvt/TaskManager/blob/master/UML.PNG?raw=true "Title")
+
+
 ### Basic Usage
 ###### Client side
 ```C++

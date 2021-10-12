@@ -1,3 +1,6 @@
+#ifndef _State_h_
+#define _State_h_
+
 
 class State
 {
@@ -12,5 +15,8 @@ public:
     ~State() { }
 
 };
+
+#endif //_State_h_
+
 
 

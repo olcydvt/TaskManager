@@ -1,3 +1,5 @@
+#ifndef _Task_h_
+#define _Task_h_
 
 
 #include <atomic>
@@ -93,3 +95,4 @@ private:
 };
 
 
+#endif // _Task_h_
