@@ -11,6 +11,7 @@ set(SOURCES main.cpp State.h AbortState.h CLIManager.h IdleState.h PauseState.h 
 
  
 add_executable(taskManager ${SOURCES})
+target_link_libraries(taskManager pthread)
 
 target_compile_features(taskManager PRIVATE cxx_std_17)
 
