@@ -32,8 +32,7 @@ int main(int argc, char* argv[]) {
 		return;
 	};
 
-	//auto numOfThread = std::stoi(argv[1]);
-	auto numOfThread = 4;
+	auto numOfThread = std::stoi(argv[1]);
 	TaskManager taskManager(numOfThread);
 	taskManager.assignTask(testFunc, 3);
 	taskManager.assignTask(testFunc2);

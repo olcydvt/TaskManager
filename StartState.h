@@ -1,5 +1,3 @@
-#pragma once
-
 #include <mutex>
 #include <iostream>
 #include "State.h"

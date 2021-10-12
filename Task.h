@@ -1,12 +1,9 @@
 
-#ifndef TASK_H
-#define TASK_H
 
 #include <atomic>
 #include <functional>
 #include <future>
 #include <mutex>
-#include <queue>
 #include <utility>
 #include <iostream>
 #include <string>
@@ -58,7 +55,6 @@ public:
     template <typename RetType>
     class AnyJob : public Job {
     private:
-        //std::packaged_task<RetType()> func;
         std::function<RetType()> func;
     public:
         AnyJob(std::function<RetType()> func) : func(std::move(func)) {}
@@ -97,4 +93,3 @@ private:
 };
 
 
-#endif //TASK_H
