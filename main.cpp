@@ -21,6 +21,7 @@ int main(int argc, char* argv[]) {
 	auto testFunc = [](int x) {
 		using namespace std::chrono_literals;
 		//std::cout << "testFunc is running" << "\n";
+		/*do smth*/
 		std::this_thread::sleep_for(2000ms);
 		return x * x;
 	};
@@ -28,6 +29,13 @@ int main(int argc, char* argv[]) {
 	auto testFunc2 = []() {
 		using namespace std::chrono_literals;
 		//std::cout << "testFunc is running" << "\n";
+		/*do smth*/
+		std::this_thread::sleep_for(1000ms);
+		return;
+	};
+
+	auto idleTask = []() {
+		using namespace std::chrono_literals;
 		std::this_thread::sleep_for(1000ms);
 		return;
 	};
@@ -37,6 +45,12 @@ int main(int argc, char* argv[]) {
 	TaskManager taskManager(numOfThread);
 	taskManager.assignTask(testFunc, 3);
 	taskManager.assignTask(testFunc2);
+
+	auto idleThreadsCnt = numOfThread - taskManager.getActiveThreadCnt();
+	while (idleThreadsCnt) {
+		taskManager.assignTask(idleTask);
+		--idleThreadsCnt;
+	}
 
 	CLIManager cliManager(taskManager);
 

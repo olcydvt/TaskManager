@@ -63,6 +63,14 @@ public:
         }
     }
 
+    void abortAll() {
+        for (auto& task : taskPackageMap) {
+            auto pTask = task.second->_task;
+            pTask->setState(pTask->getAbortState());
+            pTask->atomics.isStarting = false;
+        }
+    }
+
     void pause(jobId _uniqueJobId) {
         if (auto task = taskPackageMap[_uniqueJobId]; task != nullptr) {
             auto pTask = task->_task;
@@ -92,8 +100,8 @@ public:
         }
     }
 
-    void quit() {
-        //todo
+    int getActiveThreadCnt() {
+        return threadPool.size();
     }
 
 
