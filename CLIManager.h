@@ -24,7 +24,7 @@ public:
 			<< "\n"
 			<< "resume <id> - aborts execution of a job with the given id"
 			<< "\n"
-			<< "quit <id> - aborts execution of a job with the given id"
+			<< "quit <id> - aborts all running jobs and quits the application"
 			<< "\n"
 			<< "\n";
 	}
@@ -70,6 +70,7 @@ public:
 				m_taskManager.resume(stoi(strings[1]));
 				break;
 			case 4:
+				m_taskManager.abortAll();
 				break;
 			case 5:
 				m_taskManager.getJobState();
