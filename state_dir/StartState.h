@@ -1,7 +1,7 @@
 #include <mutex>
 #include <iostream>
 #include "State.h"
-#include "Task.h"
+#include "../task_dir/Task.h"
 
 class StartState : public State {
 public:

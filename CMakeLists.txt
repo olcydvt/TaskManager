@@ -6,14 +6,15 @@ set(PROJECT_NAME "TaskManager")
 
 project (${PROJECT_NAME} CXX)
 
+add_subdirectory(cli_dir)
+add_subdirectory(task_dir)
+add_subdirectory(state_dir)
 
-set(SOURCES main.cpp State.h AbortState.h CLIManager.h IdleState.h PauseState.h StartState.h  Task.h Task.cpp TaskManager.h )
+
+set(SOURCES main.cpp)
 
  
 add_executable(taskManager ${SOURCES})
-target_link_libraries(taskManager pthread)
-
-target_compile_features(taskManager PRIVATE cxx_std_17)
-
+target_link_libraries(taskManager PRIVATE pthread states tskmngr cli)
 
 

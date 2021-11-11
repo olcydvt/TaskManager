@@ -1,8 +1,9 @@
+
 #include <mutex>
 #include <iostream>
 
 #include "State.h"
-#include "Task.h"
+#include "../task_dir/Task.h"
 
 class AbortState : public State {
 public:
@@ -14,13 +15,11 @@ public:
     }
 
     void abort() override {
-        return;
+        state = "aborted";
+        throw std::runtime_error("task is aborted");
     }
     void pause() override {
-        std::unique_lock<std::mutex> lock(task.m_jobMutex);
-        state = "idle";
-        task.conditions.resume_cv.wait(lock, [this]() {return task.atomics.isResuming.load(); });
-        task.atomics.isResuming = false;
+        return;
 
     }
     void resume() override {

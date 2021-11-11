@@ -1,15 +1,13 @@
-
 #include <mutex>
 #include <iostream>
-#include <chrono>
 
 #include "State.h"
-#include "Task.h"
+#include "../task_dir/Task.h"
 
-class PauseState : public State {
+class AbortState : public State {
 public:
 
-    explicit PauseState(Task& in_task) :task(in_task) {}
+    explicit AbortState(Task& in_task) :task(in_task) {}
 
     void start() override {
         return;
@@ -19,9 +17,8 @@ public:
         return;
     }
     void pause() override {
-
         std::unique_lock<std::mutex> lock(task.m_jobMutex);
-        state = "paused";
+        state = "idle";
         task.conditions.resume_cv.wait(lock, [this]() {return task.atomics.isResuming.load(); });
         task.atomics.isResuming = false;
 
